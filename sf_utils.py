@@ -401,6 +401,8 @@ def plot_from_df(df, valuetype, base=None):
         display(sfData.add_logx_button())
         # display(widgets.HBoxsfDataData.add_logx_button(), sfData.plot_scan_wavelength_button()]))
         sfData.plot_interactive_buttons_for_kinetics()
+    
+    return sfData
         
 
 def export_kintek(csvfile, wavelengths, outputName=None):
