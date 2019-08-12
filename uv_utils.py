@@ -137,12 +137,12 @@ class AdjustablePlot:
                 concise=True, description=' ', value=to_hex(color), continuous_update=True)
             width_widget = widgets.FloatText(value=line.get_linewidth(), continuous_update=True)
             marker_widget = widgets.Dropdown(options=textToMarker, value=textToMarker['nothing'])
-            msize_widget = widgets.FloatText(value=line.get_markersize(), continuous_update=True)
+            msize_widget = widgets.FloatText(value=line.get_markersize(), description='size', continuous_update=True)
             legend_widget = widgets.Text(value=legend, placeholder='Legend')
             shift_widget = widgets.FloatText(value=shift, step=0.01, readout_format='.2f', continuous_update=True)
             scale_widget = widgets.FloatText(value=scale, readout_format='.2f', continuous_update=True)
 
-            color_widget.layout.width = '5%'
+            color_widget.layout.width = 'auto'
             width_widget.layout.width = '15%'
             marker_widget.layout.width = '15%'
             msize_widget.layout.width = '15%'
