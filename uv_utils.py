@@ -60,7 +60,7 @@ class AdjustablePlot:
         for i in range(len(df.columns)):
             shift = shifts[i]
             scale = scales[i]
-            df_adjust = df.iloc[:,[i]] * scale + shift
+            df_adjust = df.iloc[:,[i]].dropna() * scale + shift
             df_adjust.plot.line(
                 ax=axis,  # plot in the defined axis
                 xlim=(float(df.index[0]), float(df.index[-1])),
@@ -89,7 +89,7 @@ class AdjustablePlot:
         def change_data(line, df, shift, scale):
             axis = line.axes
             index = axis.lines.index(line)
-            origin = df.iloc[:,[index]]
+            origin = df.iloc[:,[index]].dropna()
             line.set_ydata(origin*scale + shift)
             axis.relim()
             axis.autoscale_view(True, True, True)
@@ -136,7 +136,7 @@ class AdjustablePlot:
             color_widget = widgets.ColorPicker(
                 concise=True, description=' ', value=to_hex(color), continuous_update=True)
             width_widget = widgets.FloatText(value=line.get_linewidth(), continuous_update=True)
-            marker_widget = widgets.Dropdown(options=textToMarker, value=textToMarker['nothing'])
+            marker_widget = widgets.Dropdown(options=textToMarker, value=textToMarker[markerToText[line.get_marker()]])
             msize_widget = widgets.FloatText(value=line.get_markersize(), description='size', continuous_update=True)
             legend_widget = widgets.Text(value=legend, placeholder='Legend')
             shift_widget = widgets.FloatText(value=shift, step=0.01, readout_format='.2f', continuous_update=True)
