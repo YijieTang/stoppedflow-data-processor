@@ -1,7 +1,7 @@
 from __future__ import print_function
 import os
 import math
-import pandas
+import pandas as pd
 import numpy as np
 from itertools import cycle, islice
 
@@ -50,7 +50,7 @@ def load_data(filename):
             invert = True
         except ValueError:
             raise Exception("cannot determine number of rows to skip!")
-    df = pandas.read_csv(
+    df = pd.read_csv(
         filename,  # file name
         skiprows=skiprows,  # leading rows that should not be read-in
         delimiter=',',
@@ -123,13 +123,13 @@ def _get_selected_columns_as_dataframe(df, values=None, shifts=None, scales=None
     if scales is None:
         scales = [1] * n
     # build new dataframe
-    dfResult = pandas.DataFrame()
+    dfResult = pd.DataFrame()
     for i in range(n):
         value = values[i]
         index = abs(df.columns - value * np.ones(len(df.columns))).argmin()
         shift = shifts[i]
         scale = scales[i]
-        dfResult = pandas.concat([dfResult, df.iloc[:, index:index+1]*scale+shift], axis=1)
+        dfResult = pd.concat([dfResult, df.iloc[:, index:index+1]*scale+shift], axis=1)
     return dfResult
 
 def select_wavelength(df, values, shifts=None, scales=None):
