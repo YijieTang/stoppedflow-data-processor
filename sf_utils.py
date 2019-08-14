@@ -416,3 +416,14 @@ def export_kintek(csvfile, wavelengths, outputName=None):
     dfPartial = select_wavelength(df, values=wavelengths)
     dfPartial.to_csv(sep='\t', float_format='%.6f', path_or_buf=outputName, mode='a')
     print('kintek input file saved as %s' % outputName)
+
+
+def read_kintek_simulation(filename):
+    return pd.read_csv(
+        filename,  # file name
+        skiprows=0,  # leading rows that should not be read-in
+        delimiter='\t',
+        header=0,
+        index_col=0,
+        engine='python'
+    ).dropna(axis='columns', how='any')
