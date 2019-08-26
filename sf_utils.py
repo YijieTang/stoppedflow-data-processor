@@ -423,7 +423,7 @@ def read_kintek_simulation(filename):
         filename,  # file name
         skiprows=0,  # leading rows that should not be read-in
         delimiter='\t',
-        header=0,
+        header=1,
         index_col=0,
         engine='python'
     ).dropna(axis='columns', how='any')
