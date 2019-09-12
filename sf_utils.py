@@ -67,14 +67,13 @@ def load_data(filename):
 
 
 # average over files and save
-def save_average(csvfiles):   
+def save_average(csvfiles, aveFileName=None):
     dfSum = reduce((lambda df1, df2: df1 + df2), list(map(load_data, csvfiles)))
     dfAve = dfSum / len(csvfiles)
     # save to file
-    aveFileName = reduce((lambda s1, s2: s1 + s2),
-                         re.split('.*/|-[0-9]+[.]csv', csvfiles[0])) + '-ave.csv'
+    if aveFileName is None:
+        aveFileName = ''.join(re.split('.*/|-[0-9]+[.]csv', csvfiles[0])) + '-ave.csv'
     print("averaged file name is: " + aveFileName)
-    aveFileName
     with open(aveFileName, 'w') as f:
         f.write('Jupyter Notebook generated file, author - Yijie Tang (yijietang@cmu.edu)\n')
         f.write('Powered by python3, matplotlib, numpy, tkinter, jupyter\n')
