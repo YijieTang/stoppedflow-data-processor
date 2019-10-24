@@ -20,8 +20,6 @@ RUN apt-get update -y && \
 RUN mkdir -p /opt/app/data
 
 ENV TINI_VERSION v0.6.0
-ADD sf_utils.py /usr/lib/python3.6/
-ADD uv_utils.py /usr/lib/python3.6/
 ADD . /opt/app/data/
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 RUN chmod +x /usr/bin/tini
