@@ -392,6 +392,7 @@ def plot_from_df(df, valuetype, base=None):
     )
     
     if valuetype=='timepoint':
+        sfData.xlabel='Wavelength (nm)'
         sfData.plot_selected_spectra(values)
         # display(widgets.HBox([sfData.plot_scan_timepoint_button()]))
         sfData.plot_interactive_buttons_for_spectra()
